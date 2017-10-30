@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.oiskeletons.android.model.user.UserService;
+import com.oiskeletons.android.util.OISkeletonApplicationBase;
 
 import java.sql.Time;
 
@@ -27,6 +28,7 @@ public class HomeActivity extends AppCompatActivity {
     @Inject OkHttpClient okHttpClient;
     @Inject SharedPreferences sharedPreferences;
     @Inject Retrofit retrofit;
+    @Inject UserService userService;
 
     private TextView mTextMessage;
 
@@ -63,13 +65,14 @@ public class HomeActivity extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        ((OISkeletonApplication)getApplication()).getNetComponent().inject(this);
+        ((OISkeletonApplicationBase)getApplication()).getNetComponent().inject(this);
 
         Timber.i("injected objects" + okHttpClient.toString());
 
-        UserService userService = new UserService(retrofit);
-
-        Timber.i("the number of users " + userService.getUsers().size());
+        Timber.i("the number of users " + this.userService.getUsers().size());
     }
 
+    public void doRandomStuff() {
+        Timber.i("Just wanted to wft");
+    }
 }

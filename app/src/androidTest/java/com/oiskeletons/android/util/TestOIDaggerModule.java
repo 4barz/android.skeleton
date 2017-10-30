@@ -2,12 +2,16 @@ package com.oiskeletons.android.util;
 
 import android.app.Application;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.oiskeletons.android.model.user.User;
 import com.oiskeletons.android.model.user.UserService;
+
+import org.mockito.Mockito;
+
+import java.util.Arrays;
 
 import javax.inject.Singleton;
 
@@ -17,6 +21,8 @@ import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static org.mockito.Mockito.when;
+
 /**
  * Created by rubin.apore on 10/28/17.
  */
@@ -25,18 +31,17 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Dagger graph of all the objects providable
  */
 @Module
-public class OIDaggerModule {
-    String mBaseUrl;
+public class TestOIDaggerModule extends OIDaggerModule{
 
-    public OIDaggerModule(String baseUrl) {
-        this.mBaseUrl = baseUrl;
+    public TestOIDaggerModule(String baseUrl) {
+        super(baseUrl);
     }
 
     @Provides
     @Singleton
     // Application reference must come from TestAppModule.class
     SharedPreferences providesSharedPreferences(Application application) {
-        return PreferenceManager.getDefaultSharedPreferences(application);
+        return Mockito.mock(SharedPreferences.class);
     }
 
     @Provides
@@ -49,12 +54,14 @@ public class OIDaggerModule {
 
     @Provides
     @Singleton
-    OkHttpClient provideOkHttpClient() {
-        OkHttpClient client = new OkHttpClient();
-        client.cache(); //setCache(cache);
-        return client;
-    }
+    OkHttpClient provideOkHttpClient() {return Mockito.mock(OkHttpClient.class);}
 
+    /**
+     * TD: find a better way to mock this
+     * @param gson
+     * @param okHttpClient
+     * @return
+     */
     @Provides
     @Singleton
     Retrofit provideRetrofit(Gson gson, OkHttpClient okHttpClient) {
@@ -69,6 +76,9 @@ public class OIDaggerModule {
     @Provides
     @Singleton
     UserService provideUserService(Retrofit retrofit) {
-        return new UserService(retrofit);
+        UserService uService = Mockito.mock(UserService.class);
+        // provide whens
+        when(uService.getUsers()).thenReturn(Arrays.asList(new User("lonerUser")));
+        return uService;
     }
 }

@@ -20,9 +20,15 @@ android {
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.oiskeletons.android.OISkeletonMockTestRunner"
     }
     buildTypes {
+        mock {
+            initWith debug
+//            applicationIdSuffix ".mock"
+            debuggable true
+            testCoverageEnabled true
+        }
         dev {
             initWith debug
             applicationIdSuffix ".debug"
@@ -40,6 +46,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    testBuildType "mock"
 }
 
 dependencies {
@@ -53,15 +61,15 @@ dependencies {
     kapt "com.google.dagger:dagger-android-processor:$dagger_version"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support:design:26.1.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation "com.android.support:appcompat-v7:$appcompat_version"
+    implementation "com.android.support:design:$android_design_version"
+    implementation "com.android.support.constraint:constraint-layout:$constraint_layout_version"
 
     //testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    androidTestImplementation "com.android.support.test:runner:$test_runner_version"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$espresso_version"
 
-    implementation 'com.jakewharton.timber:timber:4.5.1'
+    implementation "com.jakewharton.timber:timber:$timber_version"
 
 
     implementation "com.google.code.gson:gson:$gson_version"
@@ -69,7 +77,8 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
 
-    testImplementation "org.mockito:mockito-core:$mockito_version"
+    implementation "org.mockito:mockito-core:$mockito_version"
+    androidTestCompile "org.mockito:mockito-android:$mockito_version"
     testImplementation junit5()
     testImplementation junit5Params()
     testCompileOnly junit5EmbeddedRuntime()

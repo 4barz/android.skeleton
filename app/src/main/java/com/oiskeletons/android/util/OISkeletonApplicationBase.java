@@ -8,11 +8,11 @@ import timber.log.Timber;
  * Created by rubin.apore on 10/28/17.
  */
 
-public class OISkeletonApplicationBase extends Application {
+abstract public class OISkeletonApplicationBase extends Application {
     final public String BASE_API_URL = "";
     final public String BASE_NEWS_URL = "";
     final public String GITHUB_BASE_URL = "http://www.google.com";
-    private OIDaggerComponent oiDaggerComponent;
+    protected OIDaggerComponent oiDaggerComponent;
 
     /**
      * Called when the application is starting, before any activity,
@@ -25,11 +25,10 @@ public class OISkeletonApplicationBase extends Application {
     public void onCreate() {
         super.onCreate();
         this.plantTimber();
-        oiDaggerComponent = DaggerOIDaggerComponent.builder()
-                .appModule(new AppModule(this)) // This also corresponds to the name of your module: %component_name%Module
-                .oIDaggerModule(new OIDaggerModule(GITHUB_BASE_URL))
-                .build();
+        injectComponents();
     }
+
+    abstract protected void injectComponents();
 
     protected void plantTimber() {
         Timber.plant(new Timber.DebugTree(){
