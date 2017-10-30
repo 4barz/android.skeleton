@@ -1,5 +1,6 @@
 package com.oiskeletons.android;
 
+import com.oiskeletons.android.util.OISkeletonApplicationBase;
 import com.oiskeletons.android.util.ReleaseTimberLogTree;
 import timber.log.Timber;
 

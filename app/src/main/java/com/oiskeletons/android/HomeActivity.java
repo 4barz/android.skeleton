@@ -8,11 +8,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.oiskeletons.android.model.user.UserService;
+
 import java.sql.Time;
 
 import javax.inject.Inject;
 
 import okhttp3.OkHttpClient;
+import retrofit2.Retrofit;
 import timber.log.Timber;
 
 /**
@@ -23,6 +26,7 @@ public class HomeActivity extends AppCompatActivity {
 
     @Inject OkHttpClient okHttpClient;
     @Inject SharedPreferences sharedPreferences;
+    @Inject Retrofit retrofit;
 
     private TextView mTextMessage;
 
@@ -62,6 +66,10 @@ public class HomeActivity extends AppCompatActivity {
         ((OISkeletonApplication)getApplication()).getNetComponent().inject(this);
 
         Timber.i("injected objects" + okHttpClient.toString());
+
+        UserService userService = new UserService(retrofit);
+
+        Timber.i("the number of users " + userService.getUsers().size());
     }
 
 }

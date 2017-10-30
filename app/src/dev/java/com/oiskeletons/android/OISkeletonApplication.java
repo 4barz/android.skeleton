@@ -4,6 +4,8 @@ package com.oiskeletons.android;
  * Created by rubin.apore on 10/28/17.
  */
 
+import com.oiskeletons.android.util.OISkeletonApplicationBase;
+
 /**
  * OI's custom implementation of the standard android application class
  * debug:dev version

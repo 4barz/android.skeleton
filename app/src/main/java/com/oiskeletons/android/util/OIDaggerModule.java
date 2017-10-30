@@ -27,12 +27,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class OIDaggerModule {
     String mBaseUrl;
 
-    // Constructor needs one parameter to instantiate.
     public OIDaggerModule(String baseUrl) {
         this.mBaseUrl = baseUrl;
     }
 
-    // Dagger will only look for methods annotated with @Provides
     @Provides
     @Singleton
     // Application reference must come from AppModule.class
