@@ -62,6 +62,7 @@ public class OIDaggerModule {
     UserAPIService provideUserAPIService() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(mBaseUrl)
+                .addConverterFactory(GsonConverterFactory.create())
                 .build();
         // use real interface
         return retrofit.create(UserAPIService.class);

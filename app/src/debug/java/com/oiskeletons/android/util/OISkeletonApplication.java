@@ -1,4 +1,4 @@
-package com.oiskeletons.android;
+package com.oiskeletons.android.util;
 
 import com.oiskeletons.android.util.AppModule;
 import com.oiskeletons.android.util.DaggerOIDaggerComponent;
