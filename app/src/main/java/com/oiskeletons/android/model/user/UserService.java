@@ -19,21 +19,21 @@ public class UserService {
         this.userAPIService = userAPIService;
     }
     public List<User> getUsers() {
-        userAPIService.getUsers()
-                .enqueue(new Callback<List<User>>() {
-                    @Override
-                    public void onResponse(Call<List<User>> call, Response<List<User>> response) {
-                        Timber.i("the response " + response.body().size());
-                        for(int x = response.body().size() - 1; x >= 0; x--) {
-                            Timber.i("user has name " + response.body().get(x).getName());
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<List<User>> call, Throwable t) {
-                        Timber.i("the response " + t.getMessage());
-                    }
-                });
+//        userAPIService.getUsers()
+//                .enqueue(new Callback<List<User>>() {
+//                    @Override
+//                    public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+//                        Timber.i("the response " + response.body().size());
+//                        for(int x = response.body().size() - 1; x >= 0; x--) {
+//                            Timber.i("user has name " + response.body().get(x).getName());
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<List<User>> call, Throwable t) {
+//                        Timber.i("the response " + t.getMessage());
+//                    }
+//                });
         return Arrays.asList(new User("rubin"), new User("apore"));
     }
 }

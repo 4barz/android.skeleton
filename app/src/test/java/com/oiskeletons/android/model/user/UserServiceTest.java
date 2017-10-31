@@ -15,6 +15,8 @@ import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.junit.MockitoRule;
 
+import java.util.List;
+
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import timber.log.Timber;
@@ -44,10 +46,9 @@ public class UserServiceTest {
 
     @Test
     public void getUsers() {
-        // when(okHttpClient.toString()).thenReturn("hello");
-        Timber.i("the userService with mocks " + userService);
-         // List<User> users = userService.getUsers();
-         assertNotNull(userService);
+       List<User> users = userService.getUsers();
+        assertNotNull(users);
+        assertEquals(users.size(), 2);
     }
 
 }

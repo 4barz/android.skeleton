@@ -15,6 +15,13 @@ class UserTest {
     }
 
     @org.junit.jupiter.api.Test
+    void createUser() {
+        String name = "createdUser";
+        User user = new User(name);
+        assertNotNull(user);
+    }
+
+    @org.junit.jupiter.api.Test
     void getName() {
         String name = "name";
         User user = new User(name);
