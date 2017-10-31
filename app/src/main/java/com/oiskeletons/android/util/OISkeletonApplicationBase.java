@@ -2,6 +2,7 @@ package com.oiskeletons.android.util;
 
 import android.app.Application;
 
+import timber.log.BuildConfig;
 import timber.log.Timber;
 
 /**
@@ -24,7 +25,10 @@ abstract public class OISkeletonApplicationBase extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        if(BuildConfig.DEBUG){
         this.plantTimber();
+        }
+
         injectComponents();
     }
 
