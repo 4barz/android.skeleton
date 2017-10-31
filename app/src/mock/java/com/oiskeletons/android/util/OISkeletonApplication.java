@@ -4,7 +4,7 @@ package com.oiskeletons.android.util;
  * Created by rubin.apore on 10/28/17.
  */
 
-import com.oiskeletons.android.util.OISkeletonApplicationBase;
+import timber.log.Timber;
 
 /**
  * OI's custom implementation of the standard android application class
@@ -18,6 +18,7 @@ public class OISkeletonApplication extends OISkeletonApplicationBase {
                 .testAppModule(new TestAppModule(this)) // This also corresponds to the name of your module: %component_name%Module
                 .testOIDaggerModule(new TestOIDaggerModule(GITHUB_BASE_URL))
                 .build();
+        Timber.i("Using OISkeletonMockApplication to provide application logic");
     }
 
     /**

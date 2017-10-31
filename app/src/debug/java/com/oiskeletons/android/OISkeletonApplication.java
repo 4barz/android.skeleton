@@ -15,14 +15,10 @@ import com.oiskeletons.android.util.OISkeletonApplicationBase;
  */
 
 public class OISkeletonApplication extends OISkeletonApplicationBase {
-    final public String BASE_API_URL = "";
-    final public String BASE_NEWS_URL = "";
-    final public String GITHUB_BASE_URL = "";
-
     @Override
     protected void injectComponents() {
         oiDaggerComponent = DaggerOIDaggerComponent.builder()
-                .appModule(new AppModule(this)) // This also corresponds to the name of your module: %component_name%Module
+                .appModule(new AppModule(this))
                 .oIDaggerModule(new OIDaggerModule(GITHUB_BASE_URL))
                 .build();
     }

@@ -77,7 +77,10 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
 
-    implementation "org.mockito:mockito-core:$mockito_version"
+    mockImplementation "com.github.gmazzo:okhttp-mock:$ok_mock_version"
+
+    testImplementation "org.mockito:mockito-core:$mockito_version"
+    mockImplementation "org.mockito:mockito-core:$mockito_version"
     androidTestCompile "org.mockito:mockito-android:$mockito_version"
     testImplementation junit5()
     testImplementation junit5Params()

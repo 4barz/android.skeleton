@@ -12,9 +12,10 @@ import retrofit2.Retrofit;
  */
 
 public class UserService {
-    private Retrofit retrofit;
-    @Inject public UserService(Retrofit retrofit) {
-        this.retrofit = retrofit;
+    private UserAPIService userAPIService;
+
+    @Inject public UserService(UserAPIService userAPIService) {
+        this.userAPIService = userAPIService;
     }
     public List<User> getUsers() {
         return Arrays.asList(new User("rubin"), new User("apore"));

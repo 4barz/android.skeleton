@@ -27,7 +27,6 @@ public class HomeActivity extends AppCompatActivity {
 
     @Inject OkHttpClient okHttpClient;
     @Inject SharedPreferences sharedPreferences;
-    @Inject Retrofit retrofit;
     @Inject UserService userService;
 
     private TextView mTextMessage;

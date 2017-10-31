@@ -11,7 +11,7 @@ import timber.log.Timber;
 abstract public class OISkeletonApplicationBase extends Application {
     final public String BASE_API_URL = "";
     final public String BASE_NEWS_URL = "";
-    final public String GITHUB_BASE_URL = "http://www.google.com";
+    final public String GITHUB_BASE_URL = "https://jsonplaceholder.typicode.com";
     protected OIDaggerComponent oiDaggerComponent;
 
     /**

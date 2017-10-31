@@ -7,6 +7,7 @@ import android.preference.PreferenceManager;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.oiskeletons.android.model.user.UserAPIService;
 import com.oiskeletons.android.model.user.UserService;
 
 import javax.inject.Singleton;
@@ -26,7 +27,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 @Module
 public class OIDaggerModule {
-    String mBaseUrl;
+    protected String mBaseUrl;
 
     public OIDaggerModule(String baseUrl) {
         this.mBaseUrl = baseUrl;
@@ -50,25 +51,25 @@ public class OIDaggerModule {
     @Provides
     @Singleton
     OkHttpClient provideOkHttpClient() {
-        OkHttpClient client = new OkHttpClient();
-        client.cache(); //setCache(cache);
-        return client;
+        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        // builder.addInterceptor()
+        // builder.cache(); //setCache(cache);
+        return builder.build();
     }
 
     @Provides
     @Singleton
-    Retrofit provideRetrofit(Gson gson, OkHttpClient okHttpClient) {
+    UserAPIService provideUserAPIService() {
         Retrofit retrofit = new Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create(gson))
                 .baseUrl(mBaseUrl)
-                .client(okHttpClient)
                 .build();
-        return retrofit;
+        // use real interface
+        return retrofit.create(UserAPIService.class);
     }
 
     @Provides
     @Singleton
-    UserService provideUserService(Retrofit retrofit) {
-        return new UserService(retrofit);
+    UserService provideUserService(UserAPIService userAPIService) {
+        return new UserService(userAPIService);
     }
 }

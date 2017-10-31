@@ -11,11 +11,9 @@ import com.oiskeletons.android.util.OISkeletonApplicationBase;
 
 /**
  * OI's custom implementation of the standard android application class
- * debug:dev version
+ * dev version
  */
 public class OISkeletonApplication extends OISkeletonApplicationBase {
-    final public String BASE_API_URL = "";
-    final public String BASE_NEWS_URL = "";
 
     @Override
     protected void injectComponents() {
