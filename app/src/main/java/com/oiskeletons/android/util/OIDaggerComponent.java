@@ -1,6 +1,7 @@
 package com.oiskeletons.android.util;
 
-import com.oiskeletons.android.HomeActivity;
+import com.oiskeletons.android.ui.BaseActivity;
+
 
 import javax.inject.Singleton;
 
@@ -13,7 +14,7 @@ import dagger.Component;
 @Singleton
 @Component(modules={AppModule.class, OIDaggerModule.class})
 public interface OIDaggerComponent {
-    void inject(HomeActivity activity);
+    void inject(BaseActivity activity);
     // void inject(MyFragment fragment);
     // void inject(MyService service);
 }

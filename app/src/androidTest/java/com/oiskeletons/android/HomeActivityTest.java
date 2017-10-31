@@ -4,6 +4,8 @@ import android.content.SharedPreferences;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import com.oiskeletons.android.model.user.UserService;
+import com.oiskeletons.android.ui.HomeActivity;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.Mock;
