@@ -82,6 +82,9 @@ dependencies {
     testImplementation "org.mockito:mockito-core:$mockito_version"
     mockImplementation "org.mockito:mockito-core:$mockito_version"
     androidTestCompile "org.mockito:mockito-android:$mockito_version"
+
+    implementation 'com.koushikdutta.ion:ion:2.+'
+
     testImplementation junit5()
     testImplementation junit5Params()
     testCompileOnly junit5EmbeddedRuntime()
